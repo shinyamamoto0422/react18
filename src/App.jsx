@@ -1,6 +1,6 @@
-import { BadgeCheckIcon } from "@heroicons/react/solid";
-import "./App.css";
-import { Layout } from "./components/Layout";
+import { BadgeCheckIcon } from '@heroicons/react/solid'
+import './App.css'
+import { Layout } from './components/Layout/Layout'
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <p>React18 basic lesson</p>
       <BadgeCheckIcon className="h-12 w-12 text-blue-500" />
     </Layout>
-  );
+  )
 }
 
-export default App;
+export default App

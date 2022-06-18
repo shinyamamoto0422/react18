@@ -6,7 +6,12 @@ import reportWebVitals from './reportWebVitals'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { AutoBatch } from './components/AutoBatch'
+import { AutoBatch } from './components/page/AutoBatch'
+import { SuspenseDemo } from './components/page/Suspense'
+import { NestedSuspense } from './components/page/NestedSuspense'
+import { Concurrent } from './components/page/Concurrent'
+import { ThemeProvider } from 'next-themes'
+import { UserId } from './components/page/UserId'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,10 +31,14 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/autobatch" element={<AutoBatch />} />
+        <Route path="/suspense" element={<SuspenseDemo />} />
+        <Route path="/nested_suspense" element={<NestedSuspense />} />
+        <Route path="/concurrent" element={<Concurrent />} />
+        <Route path="/userid" element={<UserId />} />
       </Routes>
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>
+  </QueryClientProvider>,
   // </React.StrictMode>
 )
 

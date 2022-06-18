@@ -1,16 +1,28 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { flushSync } from 'react-dom'
-import { Layout } from './Layout'
+import { Layout } from '../Layout/Layout'
 
 export const AutoBatch = () => {
+  console.log('renderd')
   const [count, setCount] = useState(0)
   const [fetchCount, setFetchCount] = useState(0)
   const [users, setUsers] = useState([])
 
+  // // React17でもバッチングされる
+  // const clickHandler = () => {
+  //   setCount((count) => count + 1)
+  //   setFetchCount((fetchCount) => fetchCount + 1)
+  // }
+
+  // React18
   const clickHandler = () => {
-    setCount((count) => count + 1)
-    setFetchCount((fetchCount) => fetchCount + 1)
+    axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
+      flushSync(() => {
+        setUsers(res.data)
+      })
+      setFetchCount((fetchCount) => fetchCount + 1)
+    })
   }
 
   return (
