@@ -58,7 +58,7 @@ export const Concurrent = () => {
           return (
             <div key={photo.title} className="center mb-5 flex items-center text-center">
               <p className="text-sm  text-blue-500">{photo?.title}</p>
-              <image className="w-10m-4 h-10" src={photo?.url} alt={photo?.titile} />
+              <image className="w-10m-4 h-10" src={photo.url} alt={photo?.titile} />
             </div>
           )
         })
