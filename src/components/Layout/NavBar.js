@@ -20,8 +20,8 @@ export const NavBar = () => {
           <Link to="/concurrent" className="rounded px-3 py-2 text-gray-300 hover:bg-gray-700">
             startTransition
           </Link>
-          <Link to="/userid" className="rounded px-3 py-2 text-gray-300 hover:bg-gray-700">
-            userId
+          <Link to="/useid" className="rounded px-3 py-2 text-gray-300 hover:bg-gray-700">
+            useId
           </Link>
         </div>
       </div>

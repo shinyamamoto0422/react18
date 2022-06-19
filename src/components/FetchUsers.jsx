@@ -2,6 +2,9 @@ import { useQueryUsers } from '../hooks/useQueryUsers'
 
 export const FetchUsers = () => {
   const { data, status } = useQueryUsers()
+  if (status === 'loading') return <p>Loading...</p>
+  if (status === 'error') return <p>Error</p>
+
   return (
     <div className="my-3 text-center">
       <p className="my-3 font-bold">User List</p>

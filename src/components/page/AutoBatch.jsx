@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { flushSync } from 'react-dom'
 import { Layout } from '../Layout/Layout'
 
 export const AutoBatch = () => {
@@ -18,9 +17,7 @@ export const AutoBatch = () => {
   // React18
   const clickHandler = () => {
     axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
-      flushSync(() => {
-        setUsers(res.data)
-      })
+      setUsers(res.data)
       setFetchCount((fetchCount) => fetchCount + 1)
     })
   }

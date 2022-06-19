@@ -10,8 +10,7 @@ import { AutoBatch } from './components/page/AutoBatch'
 import { SuspenseDemo } from './components/page/Suspense'
 import { NestedSuspense } from './components/page/NestedSuspense'
 import { Concurrent } from './components/page/Concurrent'
-import { ThemeProvider } from 'next-themes'
-import { UserId } from './components/page/UserId'
+import { UseId } from './components/page/UseId'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +33,7 @@ root.render(
         <Route path="/suspense" element={<SuspenseDemo />} />
         <Route path="/nested_suspense" element={<NestedSuspense />} />
         <Route path="/concurrent" element={<Concurrent />} />
-        <Route path="/userid" element={<UserId />} />
+        <Route path="/useid" element={<UseId />} />
       </Routes>
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />
@@ -42,7 +41,4 @@ root.render(
   // </React.StrictMode>
 )
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals()

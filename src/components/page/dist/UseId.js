@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 exports.__esModule = true;
-exports.UserId = void 0;
+exports.UseId = void 0;
 var react_1 = require("react");
 var react_2 = require("react");
 var Layout_1 = require("../Layout/Layout");
@@ -33,7 +33,7 @@ var TextBox = function (_a) {
         React.createElement("button", { onClick: onClickOk, className: "my-5 rounded bg-indigo-600 px-3 py-1 text-white hover:bg-indigo-500" }, "OK"),
         React.createElement("p", null, inputCondition)));
 };
-exports.UserId = function () {
+exports.UseId = function () {
     return (React.createElement(Layout_1.Layout, null,
         React.createElement("p", { className: "my-3 text-xl font-bold text-blue-500" }, "userid"),
         React.createElement(TextBox, { title: "\u304A\u540D\u524D", placeholder: "\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044" })));

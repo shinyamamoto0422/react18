@@ -1,11 +1,13 @@
 # React18
 
-## メジャーver
+## メジャー ver
+
 - 自動バッチ処理などのすぐに使える改善
-- startTransitionなどの新しいAPI
-- Suspenseのサポートによるストリーミングサーバーサイドレンダリング
+- startTransition などの新しい API
+- Suspense のサポートによるストリーミングサーバーサイドレンダリング
 
 ## conncurrent React
+
 同時実行 レンダリングが中断可能 再利用可能なステート
 
 講座のメモです https://course-lp.vercel.app/
@@ -14,66 +16,73 @@ https://www.udemy.com/course/react18-suspense/
 # Automatic Batching
 
 ## マウントとは
-描画 一番最初にコンポーネントが初期化され、DOMが描写され、その後のフックが呼び出される一連の流れのこと
+
+描画 一番最初にコンポーネントが初期化され、DOM が描写され、その後のフックが呼び出される一連の流れのこと
 
 ## ちなみに、レンダーとは
-renderメソッドが呼び出され、ブラウザにDOMが描写されること。 関数コンポーネントでは、returnされたJSXがDOMとしてブラウザに描写されること ここでは、stateの初期化・再計算などは含まない
+
+render メソッドが呼び出され、ブラウザに DOM が描写されること。 関数コンポーネントでは、return された JSX が DOM としてブラウザに描写されること ここでは、state の初期化・再計算などは含まない
 
 ## バッチ処理とは
-複数のstateを更新するときなど、レンダリングが重なる時に、それぞれのstateごとにレンダリングをするのではなく、まとめてレンダリングをすることで、パフォーマンス向上を図る処理
 
-# strictModeでの挙動
-開発者モードで行われる。 マウント→アンマウント→マウントすることで、予期しないバグがないかを確認する
+複数の state を更新するときなど、レンダリングが重なる時に、それぞれの state ごとにレンダリングをするのではなく、まとめてレンダリングをすることで、パフォーマンス向上を図る処理
+
+# strictMode での挙動
+
+開発者モードで行われる。 マウント → アンマウント → マウントすることで、予期しないバグがないかを確認する
 
 ### 変化
-- 17→非同期処理など、イベントハンドラー外ではBatchingされない
-- 18→イベントハンドラー外でも行われる（promiseやsetTimeoutなど）
+
+- 17→ 非同期処理など、イベントハンドラー外では Batching されない
+- 18→ イベントハンドラー外でも行われる（promise や setTimeout など）
 
 コード
- ```javascript
+
+```javascript
 // React17では、イベントのみのBatch。
 const clickHandler = () => {
-  setUsers(res.data);
-  setFetchCount((fetchCount) => fetchCount + 1);
-};
+  setUsers(res.data)
+  setFetchCount((fetchCount) => fetchCount + 1)
+}
 // React18では、Promise や setTimeout は Batch される。
 const clickHandler = () => {
-  axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
-    setUsers(res.data);
-    setFetchCount((fetchCount) => fetchCount + 1);
-  });
-};
+  axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
+    setUsers(res.data)
+    setFetchCount((fetchCount) => fetchCount + 1)
+  })
+}
 ```
-Batch を off にしたい場合 `flushSync(() => { ~~~ })`で囲めばoffになる
 
- ```javascript
-import { flushSync } from "react-dom";
+Batch を off にしたい場合 `flushSync(() => { ~~~ })`で囲めば off になる
+
+```javascript
+import { flushSync } from 'react-dom'
 
 const clickHandler = () => {
   flushSync(() => {
-    setUsers(res.data);
-  });
+    setUsers(res.data)
+  })
   flushSync(() => {
-    setFetchCount((count) => count + 1);
-  });
-};
+    setFetchCount((count) => count + 1)
+  })
+}
 ```
 
 # Suspense
+
 状態のハンドリングをしてくれる様になった コンポーネントの設計がシンプルになる
 17
+
 ```javascript
-  if (status === 'loading') return <p>Loading...</p>
-  if (status === 'error') return <p>Error</p>
+if (status === 'loading') return <p>Loading...</p>
+if (status === 'error') return <p>Error</p>
 ```
+
 18
-に渡したものをdata fetching中に表示する
+に渡したものを data fetching 中に表示する
+
 ```javascript
-<ErrorBoundary
-  fallback={
-    <ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />
-  }
->
+<ErrorBoundary fallback={<ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />}>
   <Suspense fallback={<Spinner />}>
     <FetchUsers />
     <FetchTasks />
@@ -83,7 +92,9 @@ const clickHandler = () => {
 ```
 
 # Nested Suspense
+
 Suspense をネストしている場合、 FooComponent → BarComponent の順番で読み込まれる 表示されるスケルトンは、常に一個だけ
+
 ```javascript
 const NestedSuspense = () => {
   return (
@@ -110,25 +121,27 @@ const NestedSuspense = () => {
         </Suspense>
       </Suspense>
     </Layout>
-  );
-};
+  )
+}
 ```
 
 # トランジション
+
 React の新しい概念で、緊急の更新と緊急でない更新を区別するために使用されます。
-緊急の更新→タイピング、クリック、プレスなどの直接的なインタラクションを反映します。 17 複数のstateの更新において優先順位をつけることはできなかった 18 緊急性の高いstateとそうでないstateの優先づけができる
-重いstateの更新・重たい処理に割り込みを入れて、先に緊急性の高いstateの更新を完了させることができる
+緊急の更新 → タイピング、クリック、プレスなどの直接的なインタラクションを反映します。 17 複数の state の更新において優先順位をつけることはできなかった 18 緊急性の高い state とそうでない state の優先づけができる
+重い state の更新・重たい処理に割り込みを入れて、先に緊急性の高い state の更新を完了させることができる
 
 例
-input→優先度の高いstate
-searchKey →そうでないstateでinputに入力すると、updateHandlerという重い処理が走る
-そこで、useTransitionを使う
-優先度の高いstate・低いstateを別々のuseStateに保持する
+input→ 優先度の高い state
+searchKey → そうでない state で input に入力すると、updateHandler という重い処理が走る
+そこで、useTransition を使う
+優先度の高い state・低い state を別々の useState に保持する
 const [isPending, startTransition] = useTransition()を定義
-ispending→両者のラグをtrue falseで表せる
+ispending→ 両者のラグを true false で表せる
 優先度の低い方を startTransition で囲む
 startTransition(() => setSearchKey(e.target.value))
-高い方は普通に、state更新
+高い方は普通に、state 更新
+
 ```javascript
 import { useState, useTransition } from 'react'
 
@@ -141,23 +154,28 @@ const updateHandler = (e) => {
   startTransition(() => setSearchKey(e.target.value))
 }
 ```
+
 # useId
-ハイドレーション時の不整合を防ぎつつ、クライアントとサーバーで一意なIDを生成するためのhook
+
+ハイドレーション時の不整合を防ぎつつ、クライアントとサーバーで一意な ID を生成するための hook
 
 # その他
 
 ## staleTime
+
 キャッシュされたデータをどのくらいの期間最新のものとみなすか
 
 ## promise object
+
 三つの状態をもつ
-pending　未確定の状態
+pending 　未確定の状態
 fulfilled 確定　成功
 rejected 確定　失敗
 await delay(3000) 流れ
-最初にpending状態のpromiseオブジェクトを返す
-await確定状態になるまで待つ
-約3秒後にresolve()が実行されて、fullfilledになる
+最初に pending 状態の promise オブジェクトを返す
+await 確定状態になるまで待つ
+約 3 秒後に resolve()が実行されて、fullfilled になる
+
 ```javascript
 export const delay = (ms) => {
   return new Promise((resolve) => {

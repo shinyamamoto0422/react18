@@ -25,14 +25,14 @@ const TextBox: FC<Props> = ({ title, placeholder, inputProps, errorMessage }: Pr
         <input
           {...inputProps}
           type="text"
-          aria-aria-invalid={!!errorMessage}
-          aria-errorMessage={errorMessageId} // todo: これ！
+          aria-invalid={!!errorMessage}
+          aria-errormessage={errorMessageId}
           className="mb-5 rounded border border-gray-500 px-3 py-1 text-sm"
           placeholder={placeholder}
           title={title}
           onChange={() => setInputCondition(true)}
         />
-        {inputCondition && (
+        {inputCondition || (
           <p id={errorMessageId} className="my-3 text-xl font-bold text-pink-300">
             {errorMessage}
           </p>
@@ -40,7 +40,7 @@ const TextBox: FC<Props> = ({ title, placeholder, inputProps, errorMessage }: Pr
       </label>
       <button
         onClick={onClickOk}
-        className="my-5 rounded bg-indigo-600 px-3 py-1 text-white hover:bg-indigo-500"
+        className="my-5 rounded bg-blue-400 px-3 py-1 text-white hover:bg-blue-500"
       >
         OK
       </button>
@@ -50,10 +50,10 @@ const TextBox: FC<Props> = ({ title, placeholder, inputProps, errorMessage }: Pr
   )
 }
 
-export const UserId = () => {
+export const UseId = () => {
   return (
     <Layout>
-      <p className="my-3 text-xl font-bold text-blue-500">userid</p>
+      <p className="my-3 text-xl font-bold text-blue-500">useId</p>
       <TextBox title="お名前" placeholder="入力してください" />
     </Layout>
   )

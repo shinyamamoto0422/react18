@@ -1,5 +1,5 @@
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
-import { Suspense, userId } from 'react'
+import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Layout } from '../Layout/Layout'
 import { Spinner } from '../Spinner'
