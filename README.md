@@ -15,6 +15,9 @@ https://react-ver18-hv7s1p4ts-shinyamamoto0422.vercel.app/suspense
 - https://course-lp.vercel.app/
 - https://www.udemy.com/course/react18-suspense/
 
+**参考資料**
+- https://zenn.dev/def_yuisato/scraps/d8fda264690a15
+
 ## メジャー ver
 
 - 自動バッチ処理などのすぐに使える改善
