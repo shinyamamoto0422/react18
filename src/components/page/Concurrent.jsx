@@ -44,6 +44,7 @@ export const Concurrent = () => {
       <p className={`my-3 text-xl font-bold ${isPending ? `text-pink-500` : `text-blue-500`}`}>
         StartTransition
       </p>
+      <p className="text-sm  text-blue-500">一気に消したら、違いがよりわかります</p>
       {isApply && (
         <input
           type="text"
