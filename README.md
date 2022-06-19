@@ -30,7 +30,7 @@ renderメソッドが呼び出され、ブラウザにDOMが描写されるこ�
 - 18→イベントハンドラー外でも行われる（promiseやsetTimeoutなど）
 
 コード
- ```
+ ```javascript
 // React17では、イベントのみのBatch。
 const clickHandler = () => {
   setUsers(res.data);
@@ -46,7 +46,7 @@ const clickHandler = () => {
 ```
 Batch を off にしたい場合 `flushSync(() => { ~~~ })`で囲めばoffになる
 
-```
+ ```javascript
 import { flushSync } from "react-dom";
 
 const clickHandler = () => {
