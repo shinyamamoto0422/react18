@@ -7,8 +7,10 @@ https://react-ver18-hv7s1p4ts-shinyamamoto0422.vercel.app/suspense
 ## 資料
 **React18.0 blog**
 - https://reactjs.org/blog/2022/03/29/react-v18.html
+
 **LT資料**
 - [https://www.canva.com/design/DAFD-Nh7I1g/b-74_ELq3jH7fymYExZA0A/view?utm_content=DAFD-Nh7I1g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAFD-Nh7I1g/b-74_ELq3jH7fymYExZA0A/view?utm_content=DAFD-Nh7I1g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
 **これはこの講座をもとに作りました。本当に簡潔でわかりやすいし、無料なので見てみてください！**
 - https://course-lp.vercel.app/
 https://www.udemy.com/course/react18-suspense/
