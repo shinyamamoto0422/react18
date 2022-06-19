@@ -13,7 +13,7 @@ https://react-ver18-hv7s1p4ts-shinyamamoto0422.vercel.app/suspense
 
 **これはこの講座をもとに作りました。本当に簡潔でわかりやすいし、無料なので見てみてください！**
 - https://course-lp.vercel.app/
-https://www.udemy.com/course/react18-suspense/
+- https://www.udemy.com/course/react18-suspense/
 
 ## メジャー ver
 
