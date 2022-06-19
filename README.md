@@ -1,5 +1,13 @@
 # React18
 
+## デプロイしましたので、確認用にどうぞ
+
+https://react-ver18-hv7s1p4ts-shinyamamoto0422.vercel.app/suspense
+
+## 資料
+
+https://www.canva.com/design/DAFD-Nh7I1g/b-74_ELq3jH7fymYExZA0A/view?utm_content=DAFD-Nh7I1g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 ## メジャー ver
 
 - 自動バッチ処理などのすぐに使える改善
