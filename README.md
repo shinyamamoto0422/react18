@@ -1,32 +1,34 @@
-React18
+# React18
 
-メジャーver
-自動バッチ処理などのすぐに使える改善
-startTransitionなどの新しいAPI
-Suspenseのサポートによるストリーミングサーバーサイドレンダリング
+## メジャーver
+- 自動バッチ処理などのすぐに使える改善
+- startTransitionなどの新しいAPI
+- Suspenseのサポートによるストリーミングサーバーサイドレンダリング
 
-conncurrent React
+## conncurrent React
 同時実行 レンダリングが中断可能 再利用可能なステート
+
 講座のメモです https://course-lp.vercel.app/
 https://www.udemy.com/course/react18-suspense/
 
-Automatic Batching
+# Automatic Batching
 
-マウントとは
+## マウントとは
 描画 一番最初にコンポーネントが初期化され、DOMが描写され、その後のフックが呼び出される一連の流れのこと
 
-ちなみに、レンダーとは
+## ちなみに、レンダーとは
 renderメソッドが呼び出され、ブラウザにDOMが描写されること。 関数コンポーネントでは、returnされたJSXがDOMとしてブラウザに描写されること ここでは、stateの初期化・再計算などは含まない
 
-バッチ処理とは
+## バッチ処理とは
 複数のstateを更新するときなど、レンダリングが重なる時に、それぞれのstateごとにレンダリングをするのではなく、まとめてレンダリングをすることで、パフォーマンス向上を図る処理
 
-strictModeでの挙動
+# strictModeでの挙動
 開発者モードで行われる。 マウント→アンマウント→マウントすることで、予期しないバグがないかを確認する
 
-変化
-17→非同期処理など、イベントハンドラー外ではBatchingされない
-18→イベントハンドラー外でも行われる（promiseやsetTimeoutなど）
+### 変化
+- 17→非同期処理など、イベントハンドラー外ではBatchingされない
+- 18→イベントハンドラー外でも行われる（promiseやsetTimeoutなど）
+
 コード
  ```
 // React17では、イベントのみのBatch。
@@ -56,16 +58,17 @@ const clickHandler = () => {
   });
 };
 ```
+
 # Suspense
 状態のハンドリングをしてくれる様になった コンポーネントの設計がシンプルになる
 17
-```
+```javascript
   if (status === 'loading') return <p>Loading...</p>
   if (status === 'error') return <p>Error</p>
 ```
 18
 に渡したものをdata fetching中に表示する
-```
+```javascript
 <ErrorBoundary
   fallback={
     <ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />
@@ -81,7 +84,7 @@ const clickHandler = () => {
 
 # Nested Suspense
 Suspense をネストしている場合、 FooComponent → BarComponent の順番で読み込まれる 表示されるスケルトンは、常に一個だけ
-```
+```javascript
 const NestedSuspense = () => {
   return (
     <Layout>
@@ -126,7 +129,7 @@ ispending→両者のラグをtrue falseで表せる
 優先度の低い方を startTransition で囲む
 startTransition(() => setSearchKey(e.target.value))
 高い方は普通に、state更新
-```
+```javascript
 import { useState, useTransition } from 'react'
 
 const [input, setInput] = useState('') //urgent state update
@@ -155,8 +158,10 @@ await delay(3000) 流れ
 最初にpending状態のpromiseオブジェクトを返す
 await確定状態になるまで待つ
 約3秒後にresolve()が実行されて、fullfilledになる
+```javascript
 export const delay = (ms) => {
   return new Promise((resolve) => {
     setTimeout(resolve, ms)
   })
 }
+```
